@@ -15,11 +15,9 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-
     @Autowired
     @Qualifier(value = "userDaoImpl")
     private UserDao userDao;
-
 
     @Override
     public void add(User user) {
