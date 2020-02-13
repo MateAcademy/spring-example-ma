@@ -10,9 +10,6 @@ import spring.info.service.UserService;
  */
 public class Main {
 
-//    @Autowired
-//    private static UserService userService;
-
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(AppConfig.class);
