@@ -22,7 +22,6 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void add(User user) {
-        System.out.println("We in the UserDaoImpl");
         Transaction transaction = null;
         try (final Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();

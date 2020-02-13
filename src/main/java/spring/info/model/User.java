@@ -1,6 +1,7 @@
 package spring.info.model;
 
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.Column;
@@ -15,8 +16,6 @@ import javax.persistence.Table;
  */
 @Data
 @Entity
-@ToString
-@EqualsAndHashCode
 @NoArgsConstructor
 @Table(name = "user")
 public class User {

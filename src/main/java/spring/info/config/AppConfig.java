@@ -1,7 +1,6 @@
 package spring.info.config;
 
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -21,23 +20,14 @@ import java.util.Properties;
 })
 public class AppConfig {
 
-//    @Bean
-//    public static SessionFactory initSessionFactory() {
-//        try {
-//            return new org.hibernate.cfg.Configuration().configure().buildSessionFactory();
-//        } catch (Exception e) {
-//            throw new RuntimeException("Error creating Session Factory", e);
-//        }
-//    }
-
     @Bean
     public DataSource getDataSource() {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-         dataSource.setUrl("jdbc:mysql://localhost:3306/spring_example?serverTimezone=UTC");
-         dataSource.setUsername("root");
-         dataSource.setPassword("Epic49$$");
-         return dataSource;
+        dataSource.setUrl("jdbc:mysql://localhost:3306/spring_example?serverTimezone=UTC");
+        dataSource.setUsername("root");
+        dataSource.setPassword("Epic49$$");
+        return dataSource;
     }
 
     @Bean
