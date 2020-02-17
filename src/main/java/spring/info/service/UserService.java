@@ -11,4 +11,7 @@ public interface UserService {
     void add (User user);
 
     List<User> listUsers();
+
+    public User getUserById(Long userId);
+
 }

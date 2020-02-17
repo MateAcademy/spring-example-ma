@@ -9,6 +9,9 @@ import org.springframework.stereotype.Repository;
 import spring.info.dao.UserDao;
 import spring.info.model.User;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 /**
@@ -42,4 +45,17 @@ public class UserDaoImpl implements UserDao {
                 .createQuery("from User", User.class);
         return from_user.getResultList();
     }
+
+    @Override
+    public User getUserById(Long userId) {
+            try (Session session = sessionFactory.openSession()) {
+                CriteriaBuilder cb = session.getCriteriaBuilder();
+                CriteriaQuery<User> cq = cb.createQuery(User.class);
+                Root<User> root = cq.from(User.class);
+                cq.select(root).where(cb.and(cb.equal(root.get("id"), userId)));
+                return session.createQuery(cq).uniqueResult();
+            } catch (Exception e) {
+                throw new RuntimeException("Cat't get user from db", e);
+            }
+        }
 }

@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import spring.UserResponseDto;
 import spring.info.model.User;
@@ -26,13 +25,7 @@ public class UserController {
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
     public User getUser(@PathVariable Long id) {
-        List<User> users = userService.listUsers();
-        for (User user : users) {
-            if (user.getId() == id) {
-                return user;
-            }
-        }
-        return null;
+        return userService.getUserById(id);
     }
 
     @GetMapping(value = "/inject")
