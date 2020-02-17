@@ -15,11 +15,4 @@ public class HelloController {
         return "Hello123";
     }
 
-    @GetMapping("/userDto")
-    public UserResponseDto getUser() {
-        UserResponseDto dto = new UserResponseDto();
-        dto.setPassword("Bob");
-        dto.setEmail("bob@i.ua");
-        return dto;
-    }
 }
