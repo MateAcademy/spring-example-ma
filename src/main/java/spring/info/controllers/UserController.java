@@ -25,8 +25,14 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
-    public String getUser(@PathVariable Long id, @RequestParam String message) {
-        return "user:" + id + ". Message: " + message;
+    public User getUser(@PathVariable Long id) {
+        List<User> users = userService.listUsers();
+        for (User user : users) {
+            if (user.getId() == id) {
+                return user;
+            }
+        }
+        return null;
     }
 
     @GetMapping(value = "/inject")
