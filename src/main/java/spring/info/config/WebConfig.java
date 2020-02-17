@@ -16,7 +16,7 @@ import org.springframework.web.servlet.view.JstlView;
 public class WebConfig {
 
     @Bean
-    public InternalResourceViewResolver resolver() {
+    public InternalResourceViewResolver getResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setViewClass(JstlView.class);
         viewResolver.setPrefix("/WEB-INF/views/");
