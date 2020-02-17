@@ -16,7 +16,7 @@ public class HelloController {
     }
 
     @GetMapping("/userDto")
-    public UserResponseDto getYser() {
+    public UserResponseDto getUser() {
         UserResponseDto dto = new UserResponseDto();
         dto.setPassword("Bob");
         dto.setEmail("bob@i.ua");

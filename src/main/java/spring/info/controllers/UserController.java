@@ -25,7 +25,7 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
-    public String get(@PathVariable Long id, @RequestParam String message) {
+    public String getUser(@PathVariable Long id, @RequestParam String message) {
         return "user:" + id + ". Message: " + message;
     }
 
@@ -59,7 +59,7 @@ public class UserController {
     private List<UserResponseDto> getUsers() {
         List<UserResponseDto> userResponseDtoList = new ArrayList<>();
         for (User user : userService.listUsers()) {
-            userResponseDtoList.add(new UserResponseDto(user));
+            userResponseDtoList.add(new UserResponseDto(user.getEmail(), user.getPassword()));
         }
         return userResponseDtoList;
     }
