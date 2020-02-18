@@ -20,7 +20,8 @@ import java.util.Properties;
 @PropertySource("classpath:db.properties")
 @ComponentScan(basePackages = {
         "spring.info.dao.impl",
-        "spring.info.service.impl"
+        "spring.info.service.impl",
+        "spring.info.controllers"
 })
 public class AppConfig {
 
@@ -42,12 +43,15 @@ public class AppConfig {
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
         factoryBean.setDataSource(getDataSource());
 
-        Properties props = new Properties();
-        props.put("hibernate.show_sql", environment.getProperty("hibernate.show_sql"));
-        props.put("hibernate.hbm2ddl.auto", environment.getProperty("hibernate.hbm2ddl.auto"));
+        Properties properties = new Properties();
+        properties.put("hibernate.show_sql",
+                environment.getProperty("hibernate.show_sql"));
+        properties.put("hibernate.hbm2ddl.auto",
+                environment.getProperty("hibernate.hbm2ddl.auto"));
 
-        factoryBean.setHibernateProperties(props);
+        factoryBean.setHibernateProperties(properties);
         factoryBean.setAnnotatedClasses(User.class);
         return factoryBean;
     }
+
 }

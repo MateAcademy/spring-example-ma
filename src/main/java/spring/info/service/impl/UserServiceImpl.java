@@ -1,7 +1,6 @@
 package spring.info.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import spring.info.dao.UserDao;
 import spring.info.model.User;
@@ -16,7 +15,6 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    @Qualifier(value = "userDaoImpl")
     private UserDao userDao;
 
     @Override
@@ -27,5 +25,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> listUsers() {
         return userDao.getAll();
+    }
+
+    @Override
+    public User getUserById(Long userId) {
+        return userDao.getUserById(userId);
     }
 }
