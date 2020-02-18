@@ -28,9 +28,8 @@ public class UserDaoImpl implements UserDao {
         Transaction transaction = null;
         try (final Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
-            Long itemId = (Long) session.save(user);
+            session.save(user);
             transaction.commit();
-            user.setId(itemId);
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
@@ -48,14 +47,15 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUserById(Long userId) {
-            try (Session session = sessionFactory.openSession()) {
-                CriteriaBuilder cb = session.getCriteriaBuilder();
-                CriteriaQuery<User> cq = cb.createQuery(User.class);
-                Root<User> root = cq.from(User.class);
-                cq.select(root).where(cb.and(cb.equal(root.get("id"), userId)));
-                return session.createQuery(cq).uniqueResult();
-            } catch (Exception e) {
-                throw new RuntimeException("Cat't get user from db", e);
-            }
+        try (Session session = sessionFactory.openSession()) {
+            CriteriaBuilder cb = session.getCriteriaBuilder();
+            CriteriaQuery<User> cq = cb.createQuery(User.class);
+            Root<User> root = cq.from(User.class);
+            cq.select(root).where(cb.and(cb.equal(root.get("id"), userId)));
+            return session.createQuery(cq).uniqueResult();
+        } catch (Exception e) {
+            throw new RuntimeException("Cat't get user from db", e);
         }
+    }
+
 }

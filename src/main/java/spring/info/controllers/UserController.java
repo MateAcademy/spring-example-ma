@@ -1,6 +1,7 @@
 package spring.info.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,28 +24,46 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
-    public User getUser(@PathVariable Long id) {
-        return userService.getUserById(id);
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public List<UserResponseDto> getAll() {
+        List<UserResponseDto> list = new ArrayList<>();
+        userService.listUsers().forEach(u -> list.add(getDtoFromUser(u)));
+        return list;
     }
 
-    @GetMapping(value = "/inject")
+
+    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+    public UserResponseDto getUser(@PathVariable Long id) {
+        return getDtoFromUser(userService.getUserById(id));
+    }
+
+    private UserResponseDto getDtoFromUser(User user) {
+        return new UserResponseDto(user.getName(), user.getPassword());
+    }
+
+    @GetMapping("/inject")
     private String injectUsers() {
+
         User user1 = new User();
+        user1.setName("ava@hr.ua");
         user1.setEmail("ava@hr.ua");
-        user1.setPassword("vasia");
+        user1.setPassword("111");
 
         User user2 = new User();
-        user2.setPassword("tukulova");
+        user2.setName("tukulova");
         user2.setEmail("ava2@hr.ua");
+        user2.setPassword("222");
+
 
         User user3 = new User();
-        user3.setPassword("roma");
+        user3.setName("roma");
         user3.setEmail("ava3@hr.ua");
+        user3.setPassword("333");
 
         User user4 = new User();
-        user4.setPassword("valera");
+        user4.setName("valera");
         user4.setEmail("ava4@hr.ua");
+        user4.setPassword("444");
 
         userService.add(user1);
         userService.add(user2);
@@ -54,12 +73,4 @@ public class UserController {
         return "Success";
     }
 
-    @GetMapping(value = "/")
-    private List<UserResponseDto> getUsers() {
-        List<UserResponseDto> userResponseDtoList = new ArrayList<>();
-        for (User user : userService.listUsers()) {
-            userResponseDtoList.add(new UserResponseDto(user.getEmail(), user.getPassword()));
-        }
-        return userResponseDtoList;
-    }
 }

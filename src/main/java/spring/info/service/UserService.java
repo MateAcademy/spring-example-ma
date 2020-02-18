@@ -1,6 +1,7 @@
 package spring.info.service;
 
 import spring.info.model.User;
+import spring.UserResponseDto;
 
 import java.util.List;
 
@@ -12,6 +13,6 @@ public interface UserService {
 
     List<User> listUsers();
 
-    public User getUserById(Long userId);
+    User getUserById(Long userId);
 
 }
