@@ -48,11 +48,12 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User getUserById(Long userId) {
         try (Session session = sessionFactory.openSession()) {
-            CriteriaBuilder cb = session.getCriteriaBuilder();
-            CriteriaQuery<User> cq = cb.createQuery(User.class);
-            Root<User> root = cq.from(User.class);
-            cq.select(root).where(cb.and(cb.equal(root.get("id"), userId)));
-            return session.createQuery(cq).uniqueResult();
+//            CriteriaBuilder cb = session.getCriteriaBuilder();
+//            CriteriaQuery<User> cq = cb.createQuery(User.class);
+//            Root<User> root = cq.from(User.class);
+//            cq.select(root).where(cb.and(cb.equal(root.get("id"), userId)));
+//            return session.createQuery(cq).uniqueResult();
+            return session.get(User.class, userId);
         } catch (Exception e) {
             throw new RuntimeException("Cat't get user from db", e);
         }
