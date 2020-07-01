@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.checkstyle.plugin.version>3.1.0</maven.checkstyle.plugin.version>
-        <log4j2.version>2.13.0</log4j2.version>
+        <log4j2.version>2.13.3</log4j2.version>
         <mysql.version>8.0.18</mysql.version>
         <spring.version>5.2.3.RELEASE</spring.version>
         <hibernate.core.version>5.4.10.Final</hibernate.core.version>
