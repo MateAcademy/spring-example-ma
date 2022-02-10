@@ -17,7 +17,7 @@
         <log4j2.version>2.13.0</log4j2.version>
         <mysql.version>8.0.18</mysql.version>
         <spring.version>5.2.3.RELEASE</spring.version>
-        <hibernate.core.version>5.4.10.Final</hibernate.core.version>
+        <hibernate.core.version>5.4.24.Final</hibernate.core.version>
         <hibernate.java8.version>5.4.10.Final</hibernate.java8.version>
         <maven.checkstyle.plugin.configLocation>
             https://raw.githubusercontent.com/mate-academy/style-guides/master/java/checkstyle.xml
